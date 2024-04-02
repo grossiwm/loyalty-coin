@@ -4,6 +4,7 @@
 pragma solidity ^0.8.13;
 
 import "./Token.sol";
+import "./NFT.sol";
 
 contract TokenFactory {
     event TokenCreated(address tokenAddress);
@@ -12,7 +13,9 @@ contract TokenFactory {
         
         require(msg.value >= 0.01 ether, "Insufficient ETH sent");
 
-        Token newToken = new Token(name, symbol, initialSupply, msg.sender);
+        NFT nft = new NFT(msg.sender, name, symbol);
+
+        Token newToken = new Token(name, symbol, initialSupply, msg.sender, address(nft));
 
         emit TokenCreated(address(newToken));
     }
