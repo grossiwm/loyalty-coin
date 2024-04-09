@@ -16,7 +16,7 @@ contract Token is ERC20, Ownable, ERC20Burnable, HasPrizes {
     ERC20(name, symbol)
     Ownable(initialOwner)
     {
-        _mint(msg.sender, initialSupply);
+        _mint(initialOwner, initialSupply);
         nftAddress = _nftAddress;
     }
 
